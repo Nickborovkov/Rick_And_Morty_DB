@@ -1,5 +1,7 @@
 <template>
-    <div></div>
+    <div>
+        <p>locations</p>
+    </div>
 </template>
 
 <script>

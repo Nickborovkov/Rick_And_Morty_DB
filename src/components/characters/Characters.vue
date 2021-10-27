@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        <p>characters</p>
     </div>
 </template>
 
