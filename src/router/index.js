@@ -29,6 +29,7 @@ const routes = [
   },
   {
     path: `/locations/location/:id`,
+    props: true,
     name: `specificLocation`,
     component: () => import(/*webpackChunkName: "SpecificLocation"*/`../components/locations/specificLocation/SpecificLocation`),
   },
@@ -39,6 +40,7 @@ const routes = [
   },
   {
     path: `/episodes/episode/:id`,
+    props: true,
     name: `specificEpisode`,
     component: () => import(/*webpackChunkName: "SpecificEpisode"*/`../components/episodes/specificEpisode/SpecificEpisode`),
   },
