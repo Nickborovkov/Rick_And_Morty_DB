@@ -1,59 +1,38 @@
 <template>
-    <div>
-        <p>header</p>
-        <div class="routes">
-            <router-link
-                    active-class="activeRoute"
-                    class="route"
-                    to="/"
-            >
+    <el-header>
+        <el-menu
+                mode="horizontal"
+                :default-active="this.$route.path"
+                :router="true"
+        >
+            <el-menu-item index="/">
+                <i class="el-icon-s-home"></i>
                 Home
-            </router-link>
-            <router-link
-                    active-class="activeRoute"
-                    class="route"
-                    to="/characters"
-            >
+            </el-menu-item>
+            <el-menu-item index="/characters">
+                <i class="el-icon-user"></i>
                 Characters
-            </router-link>
-            <router-link
-                    active-class="activeRoute"
-                    class="route"
-                    to="/locations"
-            >
+            </el-menu-item>
+            <el-menu-item index="/locations">
+                <i class="el-icon-map-location"></i>
                 Locations
-            </router-link>
-            <router-link
-                    active-class="activeRoute"
-                    class="route"
-                    to="/episodes"
-            >
+            </el-menu-item>
+            <el-menu-item index="/episodes">
+                <i class="el-icon-picture-outline-round"></i>
                 Episodes
-            </router-link>
-        </div>
-    </div>
+            </el-menu-item>
+        </el-menu>
+    </el-header>
 </template>
 
-<script>
-    export default {
+<!--<el-container class="logo">-->
+<!--    <img class="appLogo" src="../../assets/images/appLogo.png" alt="">-->
+<!--    <p class="appName">Rick and Morty DB</p>-->
+<!--</el-container>-->
 
-    }
+<script>
+    export default {}
 </script>
 
 <style scoped>
-    .routes{
-        display: flex;
-        justify-content: center;
-    }
-    .route{
-        font-size: 20px;
-        display: block;
-        width: 200px;
-        text-align: center;
-        text-decoration: none;
-        color: cornflowerblue;
-    }
-    .activeRoute{
-        color: tomato;
-    }
 </style>
