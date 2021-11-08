@@ -6,8 +6,8 @@ const instance = axios.create({
 
 
 export const requestCharacters = {
-    requestAllCharacters () {
-        return instance.get(`character`)
+    requestAllCharacters (page = 1) {
+        return instance.get(`character/?page=${page}`)
     },
     requestCharacterById (characterId) {
         return instance.get(`character/${characterId}`)
@@ -17,8 +17,8 @@ export const requestCharacters = {
     },
 }
 export const requestLocations = {
-    requestAllLocations () {
-        return instance.get(`location`)
+    requestAllLocations (page = 1) {
+        return instance.get(`location?page=${page}`)
     },
     requestLocationById (locationId) {
         return instance.get(`location/${locationId}`)
