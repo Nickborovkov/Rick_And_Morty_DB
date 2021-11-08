@@ -2,8 +2,6 @@
   <div>
     <Header></Header>
 
-    <p>content</p>
-
     <router-view></router-view>
 
     <Footer></Footer>
