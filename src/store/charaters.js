@@ -2,24 +2,48 @@ import {requestCharacters} from "../API/serverRequests";
 
 export default {
     state: {
-        characters: null,
+        charactersResults: null,
+        charactersInfo: null,
         specificCharacter: null,
+        page: 1,
     },
     mutations: {
-        setCharacters (state, characters) {
-            state.characters = characters
+        setCharactersResults (state, charactersResults) {
+            state.charactersResults = charactersResults
+        },
+        setCharactersInfo (state, charactersInfo) {
+            state.charactersInfo = charactersInfo
         },
         setSpecificCharacter (state, specificCharacter) {
             state.specificCharacter = specificCharacter
+        },
+        nextPage (state) {
+            state.page = state.page + 1
+        },
+        prevPage (state) {
+            state.page = state.page - 1
         }
     },
     actions: {
-        async getAllCharacters ({commit}){
+        async getAllCharacters ({commit}, page){
             try {
                 commit(`setError` , null)
                 commit(`toggleIsLoading` , true)
-                const response = await requestCharacters.requestAllCharacters()
-                commit(`setCharacters`, response.data)
+                const response = await requestCharacters.requestAllCharacters(page)
+                commit(`setCharactersResults`, response.data.results)
+                commit(`setCharactersInfo`, response.data.info)
+                commit(`toggleIsLoading` , false)
+            }catch (error) {
+                commit(`setError` , error.name)
+            }
+        },
+        async getCharactersByName ({commit}, name, status, species, gender){
+            try {
+                commit(`setError` , null)
+                commit(`toggleIsLoading` , true)
+                const response = await requestCharacters.requestCharactersByName(name, status, species, gender)
+                commit(`setCharactersResults`, response.data.results)
+                commit(`setCharactersInfo`, response.data.info)
                 commit(`toggleIsLoading` , false)
             }catch (error) {
                 commit(`setError` , error.name)
@@ -36,24 +60,19 @@ export default {
                 commit(`setError` , error.name)
             }
         },
-        async getCharactersByName ({commit}, name, status, species, gender){
-            try {
-                commit(`setError` , null)
-                commit(`toggleIsLoading` , true)
-                const response = await requestCharacters.requestCharactersByName(name, status, species, gender)
-                commit(`setCharacters`, response.data)
-                commit(`toggleIsLoading` , false)
-            }catch (error) {
-                commit(`setError` , error.name)
-            }
-        },
     },
     getters: {
-        getChatacters (state) {
-            return state.characters
+        getChatactersResults (state) {
+            return state.charactersResults
+        },
+        getChatactersInfo (state) {
+            return state.charactersInfo
         },
         getSpecificCharacter (state) {
             return state.specificCharacter
+        },
+        getPage (state) {
+            return state.page
         }
     },
 }
