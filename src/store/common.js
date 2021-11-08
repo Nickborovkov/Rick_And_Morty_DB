@@ -4,11 +4,11 @@ export default {
         isLoading: false,
     },
     mutations: {
-        setError (state, payload) {
-            state.error = payload.error
+        setError (state, error) {
+            state.error = error
         },
-        toggleIsLoading (state, payload) {
-            state.isLoading = payload.isLoading
+        toggleIsLoading (state, isLoading) {
+            state.isLoading = isLoading
         }
     },
 }
